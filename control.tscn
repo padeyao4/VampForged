@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://iwrusld744pv"]
+
+[ext_resource type="Texture2D" uid="uid://cjkyxaibu154m" path="res://assets/theme/menu.png" id="1_0fbet"]
+[ext_resource type="Theme" uid="uid://cmtgja5p8esam" path="res://assets/theme/our_theme.tres" id="1_62e2m"]
+[ext_resource type="Script" uid="uid://biq5vkr3o2vpg" path="res://start_button.gd" id="3_ee4bf"]
+[ext_resource type="Script" uid="uid://bhyixqpteyt1u" path="res://exit_button.gd" id="3_qtu10"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_62e2m")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.5
+offset_top = -63.5
+offset_right = 93.5
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0fbet")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -33.0
+offset_right = 36.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "开始游戏"
+script = ExtResource("3_ee4bf")
+
+[node name="ExitButton" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "退出"
+script = ExtResource("3_qtu10")
+
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu/VBoxContainer/StartButton" method="_on_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/ExitButton" to="Menu/VBoxContainer/ExitButton" method="_on_pressed"]
