@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnfsgtbsu67uq"]
+
+[ext_resource type="Texture2D" uid="uid://xem244ve0ut1" path="res://assets/Sprout Lands - Sprites - Basic pack/Objects/Basic_Grass_Biom_things.png" id="1_61jhv"]
+[ext_resource type="Script" uid="uid://8wmpurp7lxnj" path="res://secens/food.gd" id="1_aeqry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeqry"]
+radius = 9.0
+
+[node name="Food" type="Node2D"]
+script = ExtResource("1_aeqry")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_61jhv")
+region_enabled = true
+region_rect = Rect2(32.8818, 32.8012, 13.2441, 14.0617)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_aeqry")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

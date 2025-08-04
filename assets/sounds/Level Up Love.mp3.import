@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c33s1v6q1fi1b"
+path="res://.godot/imported/Level Up Love.mp3-1ecd291317085d72233d73695e3e63d7.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Level Up Love.mp3"
+dest_files=["res://.godot/imported/Level Up Love.mp3-1ecd291317085d72233d73695e3e63d7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

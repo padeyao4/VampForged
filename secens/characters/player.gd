@@ -1,14 +1,16 @@
+class_name Player
 extends CharacterBody2D
 
 var speed: float = 60
 
 var time: float = 0 # 累计时间
+var bullet_packed: PackedScene = preload("res://secens/gun/bullet.tscn")
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 @onready var gun: Gun = $Gun
 @onready var env_objects: Node2D = %EnvObjects
-var bullet_packed: PackedScene = preload("res://secens/gun/bullet.tscn")
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -39,14 +41,6 @@ func _physics_process(delta: float) -> void:
 	time -= delta
 	move_and_slide()
 
-func _on_Gun_shoot() -> void:
-	var bullet: Bullet = bullet_packed.instantiate()
-	bullet.scale *= 0.4
-	var direction = gun.get_direction()
-	bullet.set_direction(direction)
-	bullet.global_position = direction * 20 + gun.global_position
-	env_objects.add_child(bullet)
-
 
 func filp_gun() -> void:
 	if get_local_mouse_position().x - gun.position.x < 0:
@@ -55,3 +49,13 @@ func filp_gun() -> void:
 	if get_local_mouse_position().x - gun.position.x > 0:
 		if gun.scale.y < 0:
 			gun.scale.y *= -1
+
+
+func _on_Gun_shoot() -> void:
+	audio_stream_player.play()
+	var bullet: Bullet = bullet_packed.instantiate()
+	bullet.scale *= 0.4
+	var direction = gun.get_direction()
+	bullet.set_direction(direction)
+	bullet.global_position = direction * 20 + gun.global_position
+	env_objects.add_child(bullet)

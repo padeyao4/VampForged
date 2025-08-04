@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var hp: int = 200
+var hp: int = 3
 var speed: float = 40
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -27,6 +27,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		bullet.throughs -= 1
 		hp -= GameManager.gun_damage
 		if hp <= 0:
+			var food = preload("res://secens/food.tscn").instantiate()
+			food.position = position
+			get_parent().add_child(food)
 			queue_free()
 			print("enemy free")
 		else:

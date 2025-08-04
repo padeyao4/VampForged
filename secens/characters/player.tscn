@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6vfsqisew51t"]
+[gd_scene load_steps=30 format=3 uid="uid://b6vfsqisew51t"]
 
 [ext_resource type="Script" uid="uid://cgde0ev1ecec7" path="res://secens/characters/player.gd" id="1_i5ai8"]
 [ext_resource type="Texture2D" uid="uid://c3jn6ys81vkol" path="res://assets/Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_0suu6"]
 [ext_resource type="PackedScene" uid="uid://dpuif5i74yg2v" path="res://secens/gun/gun.tscn" id="3_tx4th"]
+[ext_resource type="AudioStream" uid="uid://cgl1k2o2iefcr" path="res://assets/sounds/762x54r Single WAV.wav" id="4_5idky"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6qma"]
 size = Vector2(12, 8)
@@ -227,6 +228,8 @@ states/move/position = Vector2(571, 120)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_0tgb1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_cvngs"), "idle", "move", SubResource("AnimationNodeStateMachineTransition_em6hl")]
 graph_offset = Vector2(5.90255, 0)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tx4th"]
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_i5ai8")
@@ -238,7 +241,6 @@ texture = ExtResource("2_0suu6")
 offset = Vector2(0, -7)
 hframes = 4
 vframes = 4
-frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -264,3 +266,11 @@ parameters/idle/blend_position = Vector2(0.031185, 0.151625)
 parameters/move/blend_position = Vector2(0.168399, -0.541516)
 
 [node name="Gun" parent="." instance=ExtResource("3_tx4th")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tx4th")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5idky")

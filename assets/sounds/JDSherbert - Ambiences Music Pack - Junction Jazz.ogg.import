@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://3pdlhda7tjon"
+path="res://.godot/imported/JDSherbert - Ambiences Music Pack - Junction Jazz.ogg-2e1b6fc59ea50be7258b7120438be2d2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/JDSherbert - Ambiences Music Pack - Junction Jazz.ogg"
+dest_files=["res://.godot/imported/JDSherbert - Ambiences Music Pack - Junction Jazz.ogg-2e1b6fc59ea50be7258b7120438be2d2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

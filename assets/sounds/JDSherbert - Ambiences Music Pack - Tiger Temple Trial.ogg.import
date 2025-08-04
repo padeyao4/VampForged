@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0v1ymrh8ubbr"
+path="res://.godot/imported/JDSherbert - Ambiences Music Pack - Tiger Temple Trial.ogg-983921e044a9b1a3cf8a3e7e3ca357ff.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/JDSherbert - Ambiences Music Pack - Tiger Temple Trial.ogg"
+dest_files=["res://.godot/imported/JDSherbert - Ambiences Music Pack - Tiger Temple Trial.ogg-983921e044a9b1a3cf8a3e7e3ca357ff.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

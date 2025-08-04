@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgl1k2o2iefcr"
+path="res://.godot/imported/762x54r Single WAV.wav-d1c5d84056a8d3e70264192f56f88ff7.sample"
+
+[deps]
+
+source_file="res://assets/sounds/762x54r Single WAV.wav"
+dest_files=["res://.godot/imported/762x54r Single WAV.wav-d1c5d84056a8d3e70264192f56f88ff7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
