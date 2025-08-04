@@ -1,0 +1,12 @@
+{
+  "godotTools.editorPath.godot4": "c:\\tools\\Godot_v4.4.1-stable_win64.exe",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/*.tmp": true,
+    "**/*.uid": true
+  }
+}

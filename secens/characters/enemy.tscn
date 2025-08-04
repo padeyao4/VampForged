@@ -1,0 +1,164 @@
+[gd_scene load_steps=14 format=3 uid="uid://iny8blaklo8v"]
+
+[ext_resource type="Script" uid="uid://dugc7ohby6yeu" path="res://secens/characters/enemy.gd" id="1_8gh2e"]
+[ext_resource type="Texture2D" uid="uid://vxuhyvreix0v" path="res://assets/Sprout Lands - Sprites - Basic pack/Characters/Free Cow Sprites.png" id="2_nqwj1"]
+[ext_resource type="Script" uid="uid://bjvw8p3agdmoq" path="res://secens/characters/enemy_state_machine.gd" id="3_2tkgv"]
+[ext_resource type="Script" uid="uid://dr37ta7afcbk" path="res://secens/characters/enemy_state_idle.gd" id="3_qviqt"]
+[ext_resource type="Script" uid="uid://dbm0voqiu46vj" path="res://secens/characters/enemy_state_run.gd" id="4_b7qdy"]
+[ext_resource type="Script" uid="uid://djstv58ml8jw4" path="res://secens/characters/enemy_state_hurt.gd" id="6_tns1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aamib"]
+size = Vector2(20, 9)
+
+[sub_resource type="Animation" id="Animation_0tgb1"]
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_l08qk"]
+resource_name = "hurt"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_em6hl"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_aamib"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_em6hl"]
+_data = {
+&"RESET": SubResource("Animation_0tgb1"),
+&"hurt": SubResource("Animation_l08qk"),
+&"idle": SubResource("Animation_em6hl"),
+&"run": SubResource("Animation_aamib")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l08qk"]
+radius = 13.0
+
+[node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_8gh2e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -1)
+texture = ExtResource("2_nqwj1")
+offset = Vector2(0, -10)
+hframes = 3
+vframes = 2
+frame = 4
+region_rect = Rect2(-0.0637207, 7.96736, 95.3748, 54.0326)
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"output_section": false,
+"pending_changes": {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"scale": "1.0",
+"slice": "",
+"source": "",
+"source_uid": -1
+},
+"slice_section": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_aamib")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_em6hl")
+}
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_l08qk")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_2tkgv")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("3_qviqt")
+
+[node name="Run" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_b7qdy")
+
+[node name="Hurt" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_tns1o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
